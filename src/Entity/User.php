@@ -38,16 +38,16 @@ class User
     /**
      * @var string|null
      *
-     * @ORM\Column(name="email", type="string", length=100, nullable=true)
+     * @ORM\Column(name="created_date", type="datetime",  nullable=true)
      */
-    private $email;
+    private $createdDate;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="created_date", type="string", length=45, nullable=true)
+     * @ORM\Column(name="email", type="string", length=100, nullable=true)
      */
-    private $createdDate;
+    private $email;
 
     /**
      * @var string|null
@@ -89,6 +89,119 @@ class User
      * })
      */
     private $status;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(?string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getBirthday(): ?\DateTimeInterface
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(?\DateTimeInterface $birthday): self
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    public function getCreatedDate(): ?\DateTimeInterface
+    {
+        return $this->createdDate;
+    }
+
+    public function setCreatedDate(?\DateTimeInterface $createdDate): self
+    {
+        $this->createdDate = $createdDate;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(?string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(?bool $active): self
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    public function getSponsorshipLink(): ?string
+    {
+        return $this->sponsorshipLink;
+    }
+
+    public function setSponsorshipLink(?string $sponsorshipLink): self
+    {
+        $this->sponsorshipLink = $sponsorshipLink;
+
+        return $this;
+    }
+
+    public function getRole(): ?Role
+    {
+        return $this->role;
+    }
+
+    public function setRole(?Role $role): self
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    public function getStatus(): ?Status
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?Status $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
 
 
 }

@@ -80,5 +80,94 @@ class Credit
      */
     private $user;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getCreatedDate(): ?\DateTimeInterface
+    {
+        return $this->createdDate;
+    }
+
+    public function setCreatedDate(?\DateTimeInterface $createdDate): self
+    {
+        $this->createdDate = $createdDate;
+
+        return $this;
+    }
+
+    public function getMontant(): ?float
+    {
+        return $this->montant;
+    }
+
+    public function setMontant(?float $montant): self
+    {
+        $this->montant = $montant;
+
+        return $this;
+    }
+
+    public function getSoldeOut(): ?bool
+    {
+        return $this->soldeOut;
+    }
+
+    public function setSoldeOut(?bool $soldeOut): self
+    {
+        $this->soldeOut = $soldeOut;
+
+        return $this;
+    }
+
+    public function getPayeDate(): ?string
+    {
+        return $this->payeDate;
+    }
+
+    public function setPayeDate(?string $payeDate): self
+    {
+        $this->payeDate = $payeDate;
+
+        return $this;
+    }
+
+    public function getUpdateDate(): ?string
+    {
+        return $this->updateDate;
+    }
+
+    public function setUpdateDate(?string $updateDate): self
+    {
+        $this->updateDate = $updateDate;
+
+        return $this;
+    }
+
+    public function getTypePayment(): ?TypePayment
+    {
+        return $this->typePayment;
+    }
+
+    public function setTypePayment(?TypePayment $typePayment): self
+    {
+        $this->typePayment = $typePayment;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
 
 }
