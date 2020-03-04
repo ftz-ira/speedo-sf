@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Form\UserType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,11 +27,18 @@ class UserController extends AbstractController
 
     /**
      * @Route("/user/add", name="add-user")
+     * @param Request $request
+     * @return Response
      */
-    public function new(){
+    public function new(Request $request){
 
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $user = $form->getData();
+            var_dump($user);die();
+        }
         return $this->render('user/index.html.twig',[
             'form' => $form->createView()
         ]);
