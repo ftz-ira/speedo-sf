@@ -37,7 +37,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $user = $form->getData();
-            var_dump($user);die();
+
         }
         return $this->render('user/index.html.twig',[
             'form' => $form->createView()

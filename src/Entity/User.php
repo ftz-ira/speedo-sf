@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -13,80 +14,76 @@ use Doctrine\ORM\Mapping as ORM;
 class User
 {
     /**
-     * @var int
-     *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Assert\NotBlank
      */
     private $id;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="pseudo", type="string", length=45, nullable=true)
+     * @ORM\Column(name="pseudo", type="string", length=45, nullable=false)
+     *  @Assert\Type("text")
      */
     private $pseudo;
 
     /**
-     * @var \DateTime|null
-     *
      * @ORM\Column(name="birthday", type="datetime", nullable=true)
+     *  @Assert\DateTime
      */
     private $birthday;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="created_date", type="datetime",  nullable=true)
+     * @ORM\Column(name="created_date", type="datetime",  nullable=false)
+     * @Assert\DateTime
      */
     private $createdDate;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="email", type="string", length=100, nullable=true)
+     * @ORM\Column(name="email", type="string", length=100, nullable=false)
+     * @Assert\Email( message = "l'email n'est pas valide")
      */
     private $email;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="password", type="string", length=255, nullable=true)
+     * @ORM\Column(name="password", type="string", length=255, nullable=false)
+     * @Assert\Type("string")
      */
     private $password;
 
     /**
-     * @var bool|null
-     *
      * @ORM\Column(name="active", type="boolean", nullable=true)
+     * @Assert\Type("bool")
      */
     private $active;
 
     /**
-     * @var string|null
-     *
      * @ORM\Column(name="sponsorship_link", type="string", length=255, nullable=true)
+     * @Assert\Type("string")
+     *
+     * @Assert\Type(type="App\Entity\SponsorshipLink")
+     * @Assert\Valid
      */
     private $sponsorshipLink;
 
     /**
-     * @var \Role
-     *
      * @ORM\ManyToOne(targetEntity="Role")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="role_id", referencedColumnName="id")
      * })
+     * @Assert\Type(type="App\Entity\Role")
+     * @Assert\Valid
      */
     private $role;
 
     /**
-     * @var \Status
-     *
      * @ORM\ManyToOne(targetEntity="Status")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="status_id", referencedColumnName="id")
      * })
+     * @Assert\Type(type="App\Entity\Status")
+     * @Assert\Valid
+     *
      */
     private $status;
 

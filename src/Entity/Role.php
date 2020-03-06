@@ -13,8 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Role
 {
     /**
-     * @var int
-     *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -22,15 +20,11 @@ class Role
     private $id;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="name", type="string", length=45, nullable=true)
+     * @ORM\Column(name="name", type="string", length=45, nullable=false)
      */
     private $name;
 
     /**
-     * @var string|null
-     *
      * @ORM\Column(name="active", type="string", length=45, nullable=true)
      */
     private $active;
@@ -63,6 +57,4 @@ class Role
 
         return $this;
     }
-
-
 }

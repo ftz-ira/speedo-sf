@@ -9,17 +9,19 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use App\Form\StatusType;
+
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pseudo',TextType::class)
+            ->add('pseudo')
             ->add('birthday')
-            ->add('createdDate')
             ->add('email')
             ->add('password')
             ->add('active')
+            ->add('status', StatusType::class)
             ->add('save', SubmitType::class)
         ;
     }

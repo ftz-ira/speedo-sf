@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -24,16 +25,9 @@ class Wallet
     /**
      * @var string|null
      *
-     * @ORM\Column(name="crypto_name", type="string", length=45, nullable=true)
-     */
-    private $cryptoName;
-
-    /**
-     * @var string|null
      *
-     * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
-    private $address;
+    private $cryptos;
 
     /**
      * @var string|null
@@ -59,12 +53,17 @@ class Wallet
     /**
      * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\OneToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
     private $user;
+
+    public function __construct()
+    {
+
+    }
 
     public function getId(): ?int
     {
