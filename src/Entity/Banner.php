@@ -59,8 +59,6 @@ class Banner
     private $type;
 
     /**
-     * @var \User
-     *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
@@ -168,9 +166,6 @@ class Banner
         return $this;
     }
 
-    /**
-     * @return Collection|Email[]
-     */
     public function getEmail(): Collection
     {
         return $this->email;

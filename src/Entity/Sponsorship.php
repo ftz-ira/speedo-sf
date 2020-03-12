@@ -50,12 +50,8 @@ class Sponsorship
     private $level;
 
     /**
-     * @var \User
-     *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="sponsorship")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
@@ -123,6 +119,4 @@ class Sponsorship
 
         return $this;
     }
-
-
 }

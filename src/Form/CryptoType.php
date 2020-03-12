@@ -2,29 +2,27 @@
 
 namespace App\Form;
 
-use App\Entity\Wallet;
+use App\Entity\Crypto;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class WalletType extends AbstractType
+class CryptoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('cryptoName')
+            ->add('name')
             ->add('address')
-            ->add('createdDate')
-            ->add('updateDate')
-            ->add('active')
-            ->add('user')
+            ->add('value')
+
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Wallet::class,
+            'data_class' => Crypto::class,
         ]);
     }
 }

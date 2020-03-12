@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +32,17 @@ class Crypto
      * @ORM\Column(type="integer", nullable=true)
      */
     private $value;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Wallet", inversedBy="cryptos")
+     */
+    private $wallet;
+
+    public function __construct()
+    {
+        $this->wallet = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -68,6 +81,37 @@ class Crypto
     public function setValue(?int $value): self
     {
         $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Wallet[]
+     */
+    public function getWallet(): Collection
+    {
+        return $this->wallet;
+    }
+
+    public function addWallet(Wallet $wallet): self
+    {
+        if (!$this->wallet->contains($wallet)) {
+            $this->wallet[] = $wallet;
+            $wallet->setCrypto($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWallet(Wallet $wallet): self
+    {
+        if ($this->wallet->contains($wallet)) {
+            $this->wallet->removeElement($wallet);
+            // set the owning side to null (unless already changed)
+            if ($wallet->getCrypto() === $this) {
+                $wallet->setCrypto(null);
+            }
+        }
 
         return $this;
     }
