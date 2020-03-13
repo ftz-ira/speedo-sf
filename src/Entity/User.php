@@ -57,11 +57,6 @@ class User implements UserInterface
     private $active;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $relation;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Sponsorship", mappedBy="user")
      */
     private $sponsorship;
@@ -70,6 +65,8 @@ class User implements UserInterface
      * @ORM\OneToOne(targetEntity="App\Entity\Wallet", mappedBy="user", cascade={"persist", "remove"})
      */
     private $wallet;
+
+    private $confirmPassword;
 
     public function __construct()
     {
@@ -247,6 +244,18 @@ class User implements UserInterface
         if ($wallet->getUser() !== $newUser) {
             $wallet->setUser($newUser);
         }
+
+        return $this;
+    }
+
+    public function getConfirmPassword(): ?string
+    {
+        return $this->confirmPassword;
+    }
+
+    public function setConfirmPassword(string $confirmPassword): self
+    {
+        $this->confirmPassword = $confirmPassword;
 
         return $this;
     }

@@ -13,21 +13,19 @@ use App\Form\UserType;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user", name="user")
+     * @Route("/", name="home")
      */
     public function index()
     {
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
+        return $this->render('user/index.html.twig');
     }
 
     /**
-     * @Route("/user/add", name="add-user")
+     * @Route("/edit", name="edit-user")
      * @param Request $request
      * @return Response
      */
-    public function new(Request $request){
+    public function new(Request $request ){
 
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -36,35 +34,8 @@ class UserController extends AbstractController
             $user = $form->getData();
 
         }
-        return $this->render('user/index.html.twig',[
+        return $this->render('user/register.html.twig',[
             'form' => $form->createView()
         ]);
-    }
-
-    public function demo(){
-  //      $em = $this->getDoctrine()->getManager();
-//        $date = new \DateTime();
-//
-//        $role = new Role();
-//        $role->setActive(1);
-//        $role->setName('admin');
-//        $em->persist($role);
-//
-//        $user = new User();
-//        $user->setActive(1);
-//        $user->setBirthday($date);
-//        $user->setCreatedDate($date);
-//        $user->setEmail('ftz@aim.com');
-//        $user->setPassword("azerty");
-//        $user->setPseudo('ftz-1');
-//        $user->setRole($role);
-//        $user->setStatus(null);
-//
-//        $em->persist($user);
-//        $em->flush();
-//
-//        return $this->render('user/index.html.twig', [
-//            'user_name' => $user->getPseudo(),
-//        ]);
     }
 }
