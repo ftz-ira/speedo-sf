@@ -20,7 +20,7 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", unique=true)
      */
     private $email;
 
@@ -35,14 +35,13 @@ class User implements UserInterface
      */
     private $password;
 
-
     /**
      * @ORM\Column(type="datetime")
      */
     private $birthday;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", unique=true)
      */
     private $pseudo;
 
